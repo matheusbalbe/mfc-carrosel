@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Carrossel Responsivo com Paleta</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Courier+New:400,700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --black-bean: #3F1813;
+      --russet: #964E24;
+      --raisin-black: #211C1F;
+      --silver: #CDCDCD;
+      --white: #FFF;
+    }
+
+    body {
+      background: var(--silver);
+    font-family: 'Montserrat', 'Helvetica Neue', sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+    .carousel-container {
+      max-width: 1200px;
+      margin: 40px auto;
+      border-radius: 16px;
+      overflow: hidden;
+      min-height: 500px;
+      position: relative;
+      box-shadow: 0 6px 36px #0003;
+      background: var(--white);
+      display: flex;
+      flex-direction: row;
+      transition: background .7s;
+    }
+
+/* CAPA 1 - Agora com fundo preto */
+.slide1 {
+  background: var(--raisin-black); /* fundo preto */
+  color: var(--white);
+  flex-direction: row;
+}
+
+/* CAPA 2 */
+.slide2 {
+  background: var(--russet);
+  color: var(--white);
+  flex-direction: row-reverse;
+}
+
+/* CAPA 3 - Agora com o gradiente */
+.slide3 {
+  background: var(--black-bean);
+  color: var(--white);
+  flex-direction: row;
+}
+
+    .carousel-content {
+      flex: 1.2;
+      padding: 60px 84px 60px 84px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      z-index: 2;
+      position: relative;
+    }
+    .carousel-title {
+      font-size: 1.6rem;
+      font-weight: 700;
+      margin-bottom: 24px;
+      /* line-height: 1.12; */
+    }
+    .carousel-desc {
+      font-size: 1rem;
+      margin-bottom: 32px;
+      color: inherit;
+      line-height: 1.5rem;
+    }
+    .carousel-btn {
+      
+      display: inline-flex;
+      width: 30%;
+      align-items: center;
+      background: var(--white);
+      color: var(--russet);
+      padding: 17px 22px;
+      border-radius: 10px;
+      border: none;
+      font-family: 'Courier New', Courier, monospace;
+      font-size: .8rem;
+      font-weight: 600;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background .2s, color .2s;
+      box-shadow: 0 2px 12px #0002;
+      border: 2px solid transparent;
+      font-family: 'Montserrat', 'Helvetica Neue', sans-serif;
+    }
+    .slide1 .carousel-btn {background: var(--russet); color: var(--white);}
+    .slide1 .carousel-btn:hover {background: var(--white); color: var(--russet); border-color: var(--russet);}
+    .slide2 .carousel-btn {background: var(--white); color: var(--raisin-black);}
+    .slide2 .carousel-btn:hover {background: var(--raisin-black); color: var(--white);}
+    .slide3 .carousel-btn {background: var(--black-bean); color: var(--silver);}
+  .slide3 .carousel-btn {
+    background: #fff8f5;
+    color: var(--black-bean);
+  }
+  .slide3 .carousel-btn:hover {
+    background: var(--white);
+    color: var(--black-bean);
+    border-color: var(--black-bean);
+  }
+    .carousel-image {
+      flex: 1.5;
+      min-height: 320px;
+      background-size: cover;
+      background-position: center;
+      transition: background-image 0.5s;
+      position: relative;
+      z-index: 1;
+    }
+    .slide3 .carousel-image::after {
+      content: "";
+      display: block;
+      position: absolute;
+      inset: 0;
+      /* background: linear-gradient(120deg, #211c1fcc 50%, #cdcdcd33 100%); */
+      z-index: 2;
+    }
+
+    .carousel-nav {
+      position: absolute;
+      top: 50%;
+      left: 0;
+      right: 0;
+      display: flex;
+      justify-content: space-between;
+      transform: translateY(-50%);
+      z-index: 10;
+      pointer-events: none;
+    }
+    .carousel-arrow {
+      background: #222c;
+      color: #fff;
+      border: none;
+      border-radius: 50%;
+      width: 44px;
+      height: 44px;
+      font-size: 2rem;
+      cursor: pointer;
+      pointer-events: all;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background .2s;
+      margin: 0 16px;
+      line-height: 1;
+      padding: 0;
+      position: relative;
+      top: 0;
+      vertical-align: middle;
+    }
+    .carousel-arrow:hover {
+      background: #222e;
+    }
+@media (max-width: 700px) {
+  .carousel-container {
+    flex-direction: column !important;
+  }
+  .carousel-image {
+    order: 0;  /* imagem primeiro */
+    width: 100%;
+    min-height: 160px;
+    height: 36vw;
+    max-height: 220px;
+    border-radius: 0;
+  }
+  .carousel-content {
+    order: 1; /* textos depois */
+    padding: 22px 6vw 18px 6vw;
+    width: 90%;
+    text-align: center;
+    align-items: center;
+  }
+ .carousel-btn {
+    width: 80%;
+    margin: 0 auto;
+  }
+
+  .carousel-title {
+    font-size: 1.15rem;
+    margin-bottom: 14px;
+  }
+  .carousel-desc {
+    font-size: 1rem;
+    margin-bottom: 22px;
+  }
+  .carousel-btn {
+    font-size: .97rem;
+    padding: 13px 11px;
+    width: 80%;
+    justify-content: center;
+    min-width: 0;
+  }
+  .carousel-nav {
+    top: unset;
+    bottom: 10px;
+    left: 0;
+    right: 0;
+    transform: none;
+  }
+  .carousel-arrow {
+    width: 38px;
+    height: 38px;
+    font-size: 1.4rem;
+    margin: 0 6px;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+  }
+  .carousel-nav {
+    position: absolute;
+    top: 20vw;
+    left: 20;
+    right: 0;
+    justify-content: center;
+    gap: 16vw;
+    transform: none;
+    bottom: unset;
+  }
+  .carousel-nav {
+    justify-content: center;
+    gap: 75vw;
+  }
+    }
+  </style>
+</head>
+<body>
+  <div class="carousel-container slide1" id="carousel">
+    <div class="carousel-content">
+      <div class="carousel-title" id="carousel-title"></div>
+      <div class="carousel-desc" id="carousel-desc"></div>
+      <a href="#" class="carousel-btn" id="carousel-btn" target="_blank"></a>
+    </div>
+    <div class="carousel-image" id="carousel-image"></div>
+    <div class="carousel-nav">
+      <button class="carousel-arrow" onclick="prevSlide()" aria-label="Anterior">&#8592;</button>
+      <button class="carousel-arrow" onclick="nextSlide()" aria-label="Próximo">&#8594;</button>
+    </div>
+  </div>
+
+  <script>
+    // Slides com layout diferenciado
+    const slides = [
+      {
+        title: 'Reforme seus móveis, revitalize seu ambiente para um negócio mais produtivo',
+        desc: 'A MFC é uma empresa especializada na reforma e venda de móveis para escritórios e ambientes comerciais. Transformamos mobiliários desgastados em peças renovadas e modernas que realçam a beleza do seu negócio.',
+        img: 'assets/reforma2.png',
+        btn: 'Peça seu orçamento',
+        link: '#',
+        class: 'slide1'
+      },
+      {
+        title: 'Encontre semi-novos comerciais revisados e prontos para uso',
+        desc: 'A MFC Estruturas Comerciais também trabalha com a venda de semi-novos! São equipamentos e estruturas em ótimo estado, revisados e prontos para uso, ideais para quem busca qualidade com economia na hora de montar ou renovar seu negócio.',
+        img: 'assets/seminovos.jpg',
+        btn: 'Peça seu orçamento',
+        link: '#',
+        class: 'slide2'
+      },
+      {
+        title: 'Retiramos seus móveis em BH e região metropolitana',
+        desc: 'Oferecemos também serviço de logística: buscamos seus móveis em Belo Horizonte e região metropolitana, ou, se possível, realizamos a reforma diretamente no seu local, sem complicações.',
+        img: 'assets/retirada.jpg',
+        btn: 'Peça seu orçamento',
+        link: '#',
+        class: 'slide3'
+      }
+    ];
+
+    let current = 0;
+    let interval = null;
+
+    function renderSlide(idx) {
+      const slide = slides[idx];
+      const container = document.getElementById('carousel');
+      container.className = `carousel-container ${slide.class}`;
+      document.getElementById('carousel-title').textContent = slide.title;
+      document.getElementById('carousel-desc').textContent = slide.desc;
+      document.getElementById('carousel-image').style.backgroundImage = `url('${slide.img}')`;
+      document.getElementById('carousel-btn').textContent = slide.btn;
+      document.getElementById('carousel-btn').href = slide.link;
+    }
+
+    function prevSlide() {
+      current = (current - 1 + slides.length) % slides.length;
+      renderSlide(current);
+      restartAuto();
+    }
+    function nextSlide() {
+      current = (current + 1) % slides.length;
+      renderSlide(current);
+      restartAuto();
+    }
+    function autoSlide() {
+      current = (current + 1) % slides.length;
+      renderSlide(current);
+    }
+    function restartAuto() {
+      clearInterval(interval);
+      interval = setInterval(autoSlide, 5000);
+    }
+
+    // Inicia o carrossel e o intervalo automático
+    renderSlide(current);
+    interval = setInterval(autoSlide, 5000);
+  </script>
+</body>
+</html>
